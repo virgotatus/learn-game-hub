@@ -7,7 +7,7 @@ import AsideBar from "./components/AsideBar";
 import { useState } from "react";
 
 function App() {
-  const [genreName, setGenreName] = useState("");
+  const [genreName, setGenreName] = useState<string | null>(null);
   console.log(genreName);
 
   return (
@@ -16,13 +16,17 @@ function App() {
         base: `"nav " "main "`,
         lg: `"nav nav" "aside main"`,
       }}
+      templateColumns={{
+        base: "1fr",
+        lg: "200px 1fr",
+      }}
       gap="1"
     >
       <GridItem area={"nav"}>
         <NavBar />
       </GridItem>
       <Show above="lg">
-        <GridItem area={"aside"}>
+        <GridItem area={"aside"} paddingX="5">
           <AsideBar setGenreName={(name: string) => setGenreName(name)} />
         </GridItem>
       </Show>

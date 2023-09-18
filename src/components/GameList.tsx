@@ -7,7 +7,7 @@ import CardContainer from "./CardContainer";
 interface Props extends GameParams {}
 
 const GameList = ({ genreName }: Props) => {
-  const { games, error, isLoading, setGames, setError } = useGames({
+  const { games, error, isLoading } = useGames({
     genreName,
   });
   const skeleton = [1, 2, 3, 4, 5, 6];
@@ -16,7 +16,7 @@ const GameList = ({ genreName }: Props) => {
     <>
       {error && <Text>{error}</Text>}
       {isLoading && (
-        <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} spacing="40px">
+        <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} spacing="20px">
           {skeleton.map((sk) => (
             <CardContainer key={sk}>
               <CardSkeleton />
@@ -24,7 +24,7 @@ const GameList = ({ genreName }: Props) => {
           ))}
         </SimpleGrid>
       )}
-      <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} spacing="40px">
+      <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} spacing="20px">
         {games.map((game) => (
           <CardContainer key={game.id}>
             <GameCard>{game}</GameCard>

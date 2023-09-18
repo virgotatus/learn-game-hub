@@ -1,12 +1,7 @@
-import apiClient, {CanceledError} from "./api-client"
+import Service, {Response} from "./HttpService";
+import {CanceledError} from "./api-client"
 
 export {CanceledError};
-
-interface Props {
-  page?: number
-  page_size? : number
-  genres? : string
-}
 
 export interface Platform {
   id: number
@@ -23,24 +18,9 @@ export interface Game {
   metacritic: number
 }
 
-interface GameResponse {
+export interface GameResponse extends Response<Game> {
   count: number
-  results: Game[]
 }
 
-class GameService {
-  get({page, page_size, genres}: Props) {
-    const controller = new AbortController();
-    const request = apiClient.get<GameResponse>("/games", {
-      signal: controller.signal, 
-      params: Object.assign({},
-         page? {page: page}:{},
-         page_size? {page_size:page_size}:{},
-         genres? {genres: genres}:{}
-        )
-      })
-    return {request, cancel: () => controller.abort()};
-  }
-}
 
-export default new GameService();
+export default new Service("/games");

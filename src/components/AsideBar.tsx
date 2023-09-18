@@ -1,5 +1,4 @@
-import { Button, List, ListItem } from "@chakra-ui/react";
-import React from "react";
+import { Button, HStack, Image, List, ListItem } from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
 
 interface Props {
@@ -12,14 +11,22 @@ const AsideBar = ({ setGenreName }: Props) => {
     <>
       <List>
         {genres.map((genre) => (
-          <ListItem key={genre.id}>
-            <Button
-              onClick={() => {
-                setGenreName(genre.slug);
-              }}
-            >
-              {genre.name}
-            </Button>
+          <ListItem key={genre.id} paddingY={1}>
+            <HStack>
+              <Image
+                boxSize="30px"
+                borderRadius="3"
+                src={genre.image_background}
+              />
+              <Button
+                onClick={() => {
+                  setGenreName(genre.slug);
+                }}
+                variant="link"
+              >
+                {genre.name}
+              </Button>
+            </HStack>
           </ListItem>
         ))}
       </List>

@@ -1,33 +1,18 @@
-import { useEffect, useState } from "react";
-import GameService, { CanceledError, Game } from "../services/GameService";
+import GameService, { Game } from "../services/GameService";
+import useData from "./useData";
 
 export interface GameParams {
-  genreName: string;
+  genreName: string | null;
 }
 
 const useGames = ({ genreName }: GameParams) => {
-  const [error, setError] = useState<string>("");
-  const [games, setGames] = useState<Game[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { data, error, isLoading } = useData<Game>(
+    GameService,
+    { params: { genres: genreName } },
+    [genreName]
+  );
 
-  useEffect(() => {
-    setIsLoading(true);
-    const { request, cancel } = GameService.get({ genres: genreName });
-    request
-      .then((res) => {
-        setGames(res.data.results);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setError(err.message);
-        setIsLoading(false);
-      });
-
-    return () => cancel();
-  }, [genreName]);
-
-  return { games, error, isLoading, setGames, setError };
+  return { games: data, error, isLoading };
 };
 
 export default useGames;
