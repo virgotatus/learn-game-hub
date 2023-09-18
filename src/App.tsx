@@ -2,13 +2,19 @@ import { ChakraBaseProvider, Show, extendBaseTheme } from "@chakra-ui/react";
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
+import GameList from "./components/GameList";
+import AsideBar from "./components/AsideBar";
+import { useState } from "react";
 
 function App() {
+  const [genreName, setGenreName] = useState("");
+  console.log(genreName);
+
   return (
     <Grid
       templateAreas={{
         base: `"nav " "main "`,
-        lg: `"nav nav" "category main"`,
+        lg: `"nav nav" "aside main"`,
       }}
       gap="1"
     >
@@ -16,12 +22,12 @@ function App() {
         <NavBar />
       </GridItem>
       <Show above="lg">
-        <GridItem bg="gray.300" area={"category"}>
-          category
+        <GridItem area={"aside"}>
+          <AsideBar setGenreName={(name: string) => setGenreName(name)} />
         </GridItem>
       </Show>
-      <GridItem bg="blue.300" area={"main"}>
-        Main
+      <GridItem area={"main"}>
+        <GameList genreName={genreName} />
       </GridItem>
     </Grid>
   );
