@@ -1,14 +1,15 @@
-import { ChakraBaseProvider, Show, extendBaseTheme } from "@chakra-ui/react";
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { HStack, Show } from "@chakra-ui/react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameList from "./components/GameList";
 import AsideBar from "./components/AsideBar";
 import { useState } from "react";
+import { GameParams } from "./hooks/useGame";
+import PlatformSelector from "./components/PlatformSelector";
+import SortSelector from "./components/SortSelector";
 
 function App() {
-  const [genreName, setGenreName] = useState<string | null>(null);
-  console.log(genreName);
+  const [gameParams, setGameParams] = useState<GameParams>({} as GameParams);
 
   return (
     <Grid
@@ -27,11 +28,35 @@ function App() {
       </GridItem>
       <Show above="lg">
         <GridItem area={"aside"} paddingX="5">
-          <AsideBar setGenreName={(name: string) => setGenreName(name)} />
+          <AsideBar
+            selectedGenre={gameParams.genreName}
+            setGenreName={(name: string) =>
+              setGameParams({ ...gameParams, genreName: name })
+            }
+          />
         </GridItem>
       </Show>
       <GridItem area={"main"}>
-        <GameList genreName={genreName} />
+        <HStack spacing="10px">
+          <PlatformSelector
+            selectedPlatform={gameParams.platforms}
+            onChange={(platform) =>
+              setGameParams({ ...gameParams, platforms: platform })
+            }
+          />
+          <SortSelector
+            currentOrdering={gameParams.ordering}
+            onChange={(ordering: string) =>
+              setGameParams({ ...gameParams, ordering: ordering })
+            }
+          />
+        </HStack>
+        <GameList
+          gameparams={gameParams}
+          onChangePlatform={(platform: string) =>
+            setGameParams({ ...gameParams, platforms: platform })
+          }
+        />
       </GridItem>
     </Grid>
   );

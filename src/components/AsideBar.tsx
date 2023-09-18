@@ -1,12 +1,22 @@
-import { Button, HStack, Image, List, ListItem } from "@chakra-ui/react";
+import {
+  Button,
+  HStack,
+  Image,
+  List,
+  ListItem,
+  Spinner,
+} from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
 
 interface Props {
+  selectedGenre: string | null;
   setGenreName: (name: string) => void;
 }
 
-const AsideBar = ({ setGenreName }: Props) => {
+const AsideBar = ({ selectedGenre, setGenreName }: Props) => {
   const { genres, error, isLoading } = useGenres();
+  if (isLoading) return <Spinner></Spinner>;
+
   return (
     <>
       <List>
@@ -22,6 +32,7 @@ const AsideBar = ({ setGenreName }: Props) => {
                 onClick={() => {
                   setGenreName(genre.slug);
                 }}
+                fontWeight={genre.slug === selectedGenre ? "bold" : "normal"}
                 variant="link"
               >
                 {genre.name}
