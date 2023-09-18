@@ -1,11 +1,8 @@
-import { HStack, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 import useGames, { GameParams } from "../hooks/useGame";
 import GameCard from "./GameCard";
 import CardSkeleton from "./CardSkeleton";
 import CardContainer from "./CardContainer";
-import PlatformSelector from "./PlatformSelector";
-import { useState } from "react";
-import SortSelector from "./SortSelector";
 
 interface Props {
   gameparams: GameParams;
@@ -13,11 +10,7 @@ interface Props {
 }
 
 const GameList = ({ gameparams, onChangePlatform }: Props) => {
-  const { games, error, isLoading } = useGames({
-    genreName: gameparams.genreName,
-    platforms: gameparams.platforms,
-    ordering: gameparams.ordering,
-  });
+  const { games, error, isLoading } = useGames(gameparams);
   const skeleton = [1, 2, 3, 4, 5, 6];
 
   return (

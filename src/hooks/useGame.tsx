@@ -7,11 +7,17 @@ export interface GameParams {
   ordering: string | null;
 }
 
-const useGames = ({ genreName, platforms, ordering }: GameParams) => {
+const useGames = (gameparams: GameParams) => {
   const { data, error, isLoading } = useData<Game>(
     GameService,
-    { params: { genres: genreName, platforms: platforms, ordering: ordering } },
-    [genreName, platforms, ordering]
+    {
+      params: {
+        genres: gameparams.genreName,
+        platforms: gameparams.platforms,
+        ordering: gameparams.ordering,
+      },
+    },
+    [gameparams]
   );
 
   return { games: data, error, isLoading };
