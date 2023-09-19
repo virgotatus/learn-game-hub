@@ -7,9 +7,9 @@ import {
 } from "react-icons/fa";
 import { BsNintendoSwitch } from "react-icons/bs";
 import { GrAndroid } from "react-icons/gr";
-import { Platform } from "../services/GameService";
 import { HStack, Icon } from "@chakra-ui/react";
 import { IconType } from "react-icons/lib";
+import { Platform } from "../hooks/usePlatform";
 
 interface Props {
   platforms: Platform[];

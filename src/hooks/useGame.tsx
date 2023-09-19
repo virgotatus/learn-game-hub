@@ -1,10 +1,13 @@
 import GameService, { Game } from "../services/GameService";
+import { Genre } from "./useGenres";
+import { Platform } from "./usePlatform";
 import useData from "./useData";
 
 export interface GameParams {
-  genreName: string | null;
-  platforms: string | null;
+  genre: Genre | null;
+  platform: Platform | null;
   ordering: string | null;
+  searchText: string | null;
 }
 
 const useGames = (gameparams: GameParams) => {
@@ -12,9 +15,10 @@ const useGames = (gameparams: GameParams) => {
     GameService,
     {
       params: {
-        genres: gameparams.genreName,
-        platforms: gameparams.platforms,
+        genres: gameparams.genre?.slug,
+        platforms: gameparams.platform?.id,
         ordering: gameparams.ordering,
+        search: gameparams.searchText,
       },
     },
     [gameparams]

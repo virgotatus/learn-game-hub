@@ -6,10 +6,9 @@ import CardContainer from "./CardContainer";
 
 interface Props {
   gameparams: GameParams;
-  onChangePlatform: (platform: string) => void;
 }
 
-const GameList = ({ gameparams, onChangePlatform }: Props) => {
+const GameList = ({ gameparams }: Props) => {
   const { games, error, isLoading } = useGames(gameparams);
   const skeleton = [1, 2, 3, 4, 5, 6];
 

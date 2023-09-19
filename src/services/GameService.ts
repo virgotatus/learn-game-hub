@@ -1,13 +1,8 @@
 import Service, {Response} from "./HttpService";
 import {CanceledError} from "./api-client"
-
+import { Platform } from "../hooks/usePlatform";
 export {CanceledError};
 
-export interface Platform {
-  id: number
-  name: string
-  slug: string
-}
 
 export interface Game {
   id : number

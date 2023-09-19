@@ -1,6 +1,5 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { GameParams } from "../hooks/useGame";
 
 interface Props {
   currentOrdering: string | null;

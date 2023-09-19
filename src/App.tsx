@@ -7,6 +7,8 @@ import { useState } from "react";
 import { GameParams } from "./hooks/useGame";
 import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
+import HeadingGame from "./components/HeadingGame";
+import { Genre } from "./hooks/useGenres";
 
 function App() {
   const [gameParams, setGameParams] = useState<GameParams>({} as GameParams);
@@ -24,24 +26,28 @@ function App() {
       gap="1"
     >
       <GridItem area={"nav"}>
-        <NavBar />
+        <NavBar
+          onSetSearchText={(searchText: string) =>
+            setGameParams({ ...gameParams, searchText: searchText })
+          }
+        />
       </GridItem>
       <Show above="lg">
         <GridItem area={"aside"} paddingX="5">
           <AsideBar
-            selectedGenre={gameParams.genreName}
-            setGenreName={(name: string) =>
-              setGameParams({ ...gameParams, genreName: name })
+            selectedGenre={gameParams.genre}
+            setGenre={(genre: Genre) =>
+              setGameParams({ ...gameParams, genre: genre })
             }
           />
         </GridItem>
       </Show>
       <GridItem area={"main"}>
-        <HStack spacing="10px">
+        <HStack spacing="10px" paddingY={1}>
           <PlatformSelector
-            selectedPlatform={gameParams.platforms}
+            selectedPlatform={gameParams.platform}
             onChange={(platform) =>
-              setGameParams({ ...gameParams, platforms: platform })
+              setGameParams({ ...gameParams, platform: platform })
             }
           />
           <SortSelector
@@ -51,12 +57,8 @@ function App() {
             }
           />
         </HStack>
-        <GameList
-          gameparams={gameParams}
-          onChangePlatform={(platform: string) =>
-            setGameParams({ ...gameParams, platforms: platform })
-          }
-        />
+        <HeadingGame gameParams={gameParams} />
+        <GameList gameparams={gameParams} />
       </GridItem>
     </Grid>
   );

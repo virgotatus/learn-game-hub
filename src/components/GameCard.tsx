@@ -1,4 +1,3 @@
-import React from "react";
 import { Game } from "../services/GameService";
 import {
   Button,
@@ -10,7 +9,6 @@ import {
   Heading,
   Image,
   Stack,
-  Text,
 } from "@chakra-ui/react";
 import PlatformIcon from "./PlatformIcon";
 import CriticScore from "./CriticScore";
