@@ -11,6 +11,7 @@ export interface Game {
   ratings_count: number
   parent_platforms: {platform: Platform}[]
   metacritic: number
+  rating_top: number
 }
 
 export interface GameResponse extends Response<Game> {

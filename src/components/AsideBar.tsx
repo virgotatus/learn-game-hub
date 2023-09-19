@@ -1,6 +1,7 @@
 import {
   Button,
   HStack,
+  Heading,
   Image,
   List,
   ListItem,
@@ -19,6 +20,9 @@ const AsideBar = ({ selectedGenre, setGenre: setGenreName }: Props) => {
 
   return (
     <>
+      <Heading fontSize="2xl" marginY={1}>
+        Genres
+      </Heading>
       <List>
         {genres.map((genre) => (
           <ListItem key={genre.id} paddingY={1}>

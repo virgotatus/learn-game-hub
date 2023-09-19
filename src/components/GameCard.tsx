@@ -1,5 +1,6 @@
 import { Game } from "../services/GameService";
 import {
+  Badge,
   Button,
   Card,
   CardBody,
@@ -9,9 +10,11 @@ import {
   Heading,
   Image,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 import PlatformIcon from "./PlatformIcon";
 import CriticScore from "./CriticScore";
+import Emojo from "./Emojo";
 
 interface Props {
   children: Game;
@@ -41,9 +44,8 @@ const GameCard = ({ children }: Props) => {
         </CardBody>
         {/* <Divider /> */}
         <CardFooter>
-          <Button variant="solid" colorScheme="gray">
-            +{children.ratings_count}
-          </Button>
+          <Emojo rating_top={children.rating_top} />
+          <Badge marginLeft={3}>+{children.ratings_count}</Badge>
         </CardFooter>
       </Card>
     </div>
