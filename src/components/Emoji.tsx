@@ -1,14 +1,12 @@
 import { BsFillHandThumbsUpFill } from "react-icons/bs";
 import { FaChampagneGlasses } from "react-icons/fa6";
 import { BsFillEmojiHeartEyesFill } from "react-icons/bs";
-import { Icon, Image, ImageProps } from "@chakra-ui/react";
-import { IconType } from "react-icons/lib";
 
 interface Props {
   rating_top: number;
 }
 
-const Emojo = ({ rating_top }: Props) => {
+const Emoji = ({ rating_top }: Props) => {
   if (rating_top < 3) return <></>;
   const emojiMap: { [key: number]: JSX.Element } = {
     3: <FaChampagneGlasses color="yellow" />,
@@ -19,4 +17,4 @@ const Emojo = ({ rating_top }: Props) => {
   return <>{emojiMap[rating_top]}</>;
 };
 
-export default Emojo;
+export default Emoji;

@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import PlatformIcon from "./PlatformIcon";
 import CriticScore from "./CriticScore";
-import Emojo from "./Emojo";
+import Emoji from "./Emoji";
 
 interface Props {
   children: Game;
@@ -44,7 +44,7 @@ const GameCard = ({ children }: Props) => {
         </CardBody>
         {/* <Divider /> */}
         <CardFooter>
-          <Emojo rating_top={children.rating_top} />
+          <Emoji rating_top={children.rating_top} />
           <Badge marginLeft={3}>+{children.ratings_count}</Badge>
         </CardFooter>
       </Card>
