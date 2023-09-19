@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Emojo = ({ rating_top }: Props) => {
-  if (rating_top < 3) return;
+  if (rating_top < 3) return <></>;
   const emojiMap: { [key: number]: JSX.Element } = {
     3: <FaChampagneGlasses color="yellow" />,
     4: <BsFillHandThumbsUpFill color="yellow" />,
