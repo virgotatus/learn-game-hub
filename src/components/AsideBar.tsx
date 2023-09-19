@@ -26,9 +26,12 @@ const AsideBar = ({ selectedGenre, setGenre: setGenreName }: Props) => {
               <Image
                 boxSize="30px"
                 borderRadius="3"
+                objectFit="cover"
                 src={genre.image_background}
               />
               <Button
+                whiteSpace="pre-wrap"
+                textAlign="left"
                 onClick={() => {
                   setGenreName(genre);
                 }}

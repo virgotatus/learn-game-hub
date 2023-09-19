@@ -22,7 +22,11 @@ const GameCard = ({ children }: Props) => {
     <div>
       <Card>
         <CardBody>
-          <Image src={children.background_image} height="200px" />
+          <Image
+            src={children.background_image}
+            height="200px"
+            objectFit="cover"
+          />
           <Stack mt="6" spacing="3">
             <HStack justifyContent="space-between">
               <PlatformIcon
